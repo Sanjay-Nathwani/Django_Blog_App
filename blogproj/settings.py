@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-d*_@dvi^g6%!&dln=76=l1ok4=hl+$clzu&&^dz472z^!80r+h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'blogproj.urls'
@@ -119,7 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
+STATICFILES_STORAGE ='whitenoise.storage.StaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
